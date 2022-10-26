@@ -7,5 +7,10 @@ export default function fetcher(url:string,data=undefined){
         },
         body:JSON.stringify(data),
     },
-    )
+    ).then((res)=>{
+        if(res.status > 399 || res.status < 200){
+            throw new Error("something went wrong");
+        }
+        return res.json();
+    })
 };

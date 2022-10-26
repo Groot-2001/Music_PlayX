@@ -18,6 +18,7 @@ import {
     MdPlaylistAdd,
     MdFavorite
  } from "react-icons/md";
+import { usePlaylist } from '../lib/hooks';
 
 const navMenu =[
     {
@@ -52,9 +53,10 @@ const MenuList = [
     
 ];
 
-const PlayList = new Array(30).fill(1).map((_,i)=>(`PlayList ${i+1}`));
+// const PlayList = new Array(30).fill(1).map((_,i)=>(`PlayList ${i+1}`));
 
 const Sidebar = () =>{
+    const {playlists} = usePlaylist();
     return(
         <Box 
             width="100%"
@@ -116,15 +118,29 @@ const Sidebar = () =>{
                     height={"56%"}
                     overflowY="auto"
                     paddingY="20px"
-                    scrollBehavior={"smooth"}
+                    css={{
+                        '&::-webkit-scrollbar': {
+                          width: '4px',
+                        },
+                        '&::-webkit-scrollbar-track': {
+                          width: '6px',
+                        },
+                        '&::-webkit-scrollbar-thumb': {
+                          background: "dodgerblue",
+                          borderRadius: '24px',
+                        },
+                      }}
                 >
                     <List spacing={2}>
-                        {PlayList.map((Playlist)=>(
-                            <ListItem paddingX={"20px"} key="Playlist">
+                        {playlists.map((playlist)=>(
+                            <ListItem paddingX={"20px"} key={playlist.id}>
                                 <LinkBox>
-                                    <NextLink href={"/"} passHref>
+                                    <NextLink href={{
+                                        pathname:"/playlist/[id]",
+                                        query:{id:playlist.id},
+                                    }} passHref>
                                         <LinkOverlay>
-                                            {Playlist}
+                                            {playlist.name}
                                         </LinkOverlay>
                                     </NextLink>
                                 </LinkBox>
