@@ -4,8 +4,17 @@ import {BsFillPlayFill} from 'react-icons/bs';
 import {AiOutlineClockCircle} from 'react-icons/ai';
 import relativeDays from '../lib/formatter';
 import convertMsToTime from '../lib/Timeformatter';
+import {useStoreActions} from 'easy-peasy';
 
 const SongTable =({songs})=>{
+    const playSongs = useStoreActions((store:any)=>store.changeActiveSongs)
+    const setActiveSong = useStoreActions((store:any)=>store.changeActiveSong)
+
+    const handlePlay =(activeSong?)=>{
+        setActiveSong(activeSong || songs[0])
+        playSongs(songs)
+    }
+
     return (
          <Box bg={"transparent"}>
             <Box padding={"10px"}>
@@ -16,6 +25,7 @@ const SongTable =({songs})=>{
                     colorScheme={"purple"}
                     size="lg" 
                     aria-label={'Play'}
+                    onClick={()=>handlePlay()}
                     />
                </Box>
             </Box>
@@ -52,6 +62,7 @@ const SongTable =({songs})=>{
                         }}
                         key={song.id}
                         cursor="pointer"
+                        onClick={()=>handlePlay(song)}
                         >
                             <Td>{i+1}</Td>
                             <Td>{song.name}</Td>
