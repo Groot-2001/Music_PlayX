@@ -4,6 +4,7 @@ import {useStoreState} from 'easy-peasy';
 
 const PlayerBar =()=>{
     const songs = useStoreState((state:any)=>state.activeSongs)
+    
     const activeSong = useStoreState((state:any)=>state.activeSong)
     return (
         <Box

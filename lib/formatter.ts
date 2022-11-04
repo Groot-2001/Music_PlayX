@@ -29,3 +29,9 @@ function relativeDays(timestamp) {
 //   console.log(relativeDays(new Date('2022-05-15').getTime()));
 
 export default relativeDays;
+
+import formatDuration from "format-duration";
+
+export const formatTime =(timeInSeconds = 0) =>{
+  return formatDuration(timeInSeconds * 1000);
+}
