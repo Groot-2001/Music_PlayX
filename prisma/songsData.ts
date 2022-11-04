@@ -3,13 +3,13 @@ export const artistsData: {
     songs: any[]
   }[] = [
     {
-      name: 'Glitch',
+      name: 'Weeknd',
       songs: [
         {
-          name: 'Fermi Paradox',
+          name: 'Starboy',
           duration: 235,
   
-          url: 'https://dl.dropboxusercontent.com/s/7xmpwvvek6szx5n/fermi-paradox.mp3?dl=0',
+          url: 'https://yolopipe.com/wp-content/uploads/2022/06/The-Weeknd-Starboy-ft.-Daft-Punk.mp3',
         },
       ],
     },
